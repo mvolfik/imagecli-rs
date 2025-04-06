@@ -37,7 +37,7 @@ name = "benchmark"
 harness = false
 
 [patch.crates-io]
-rand_os = { path = "../rand/rand_os" }
-rand_core = { path = "../rand/rand_core" }
+rand_os = { git = "https://github.com/mvolfik/rand-rs.git", branch = "0.1.3-helenos-patch" }
+rand_core = { git = "https://github.com/mvolfik/rand-rs.git", branch = "0.1.3-helenos-patch" }
 atty = { git = "https://github.com/mvolfik/atty-rs.git" }
 libc = { git = "https://github.com/mvolfik/rust-libc.git", branch = "helenos-v0.2" }
