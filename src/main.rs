@@ -1,31 +1,32 @@
 use imagecli::{documentation::generate_guide, process};
-use structopt::StructOpt;
+use clap::Parser;
 
-#[derive(StructOpt, Debug)]
+#[derive(Parser, Debug)]
+#[command(version, about, long_about = None)]
 struct Opt {
     /// Enable verbose logging.
-    #[structopt(short, long)]
+    #[arg(short, long)]
     verbose: bool,
 
     /// Input files or glob patterns.
-    #[structopt(short, long)]
+    #[arg(short, long)]
     input: Vec<String>,
 
     /// Output files.
-    #[structopt(short, long)]
+    #[arg(short, long)]
     output: Vec<String>,
 
     /// Image processing pipeline to apply.
-    #[structopt(short, long)]
+    #[arg(short, long)]
     pipeline: Option<String>,
 
     /// Ignore all the other flags and regenerate a user guide instead.
-    #[structopt(long)]
+    #[arg(long)]
     generate_guide: bool,
 }
 
 fn main() {
-    let opt = Opt::from_args();
+    let opt = Opt::parse();
 
     let result = if opt.generate_guide {
         generate_guide(opt.verbose)
